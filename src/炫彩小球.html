@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myball" width='1000' height="800"></canvas>
+    <script>
+        /* 黑色画布 */
+       var canvas = document.getElementById('myball');
+       var contxt = canvas.getContext('2d');
+       canvas.style.background = '#333';
+        /* 绘制小球 */
+        class Ball{
+            /* 小球属性 */
+            constructor(x,y,color){
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.r = 50;
+            }
+            /* 绘制 */
+            render(){
+                contxt.beginPath();
+                contxt.arc(this.x,this.y,this.r,0,Math.PI*2);
+                contxt.fillStyle = this.color;
+                contxt.fill();
+                contxt.restore();
+            }
+        }
+        //var myball = new Ball(100,100,'red');
+        //myball.render();
+
+        /* 小球移动 */
+        class MoveBall extends Ball{
+            constructor(x,y,color){
+                super(x,y,color);
+            }
+            update(){
+                // this.x += Math.random(-555,555);
+                // this.y += Math.random(-115,115);
+                this.r -= Math.random(1,3);
+                if(this.r < 0){
+                    this.r = 0;
+                }
+            }
+        }
+        var ballArr = [];
+        var ballColor = ['#FFB6C1','#FFBBFF','#E0FFFF','#9AFF9A','#FFF68F','#AEEEEE'];
+        canvas.addEventListener('mousemove',function(e){
+            ballArr.push(new MoveBall(e.offsetX,e.offsetY,ballColor[parseInt(Math.random()*6)]));
+        })
+        setInterval(function(){
+            contxt.clearRect(0,0,1000,800);
+            for(let i = 0;i<ballArr.length;i++){
+                ballArr[i].render();
+                ballArr[i].update();
+            }
+        },50)
+        
+    </script>
+</body>
+</html>
