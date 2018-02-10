@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="App">
+        <my></my>
+        <you></you>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        /* 创建一个组件构造器 */
+        let cons1 = Vue.extend({
+            template:'<div>hello,我叫张三</div>'
+        })
+        let cons2 = Vue.extend({
+            template:'<div>hihi,我叫李四</div>'
+        })
+        let vm = new Vue({
+            el:'#App',
+            components:{
+                'my':cons1,
+                'you':cons2
+            }
+        })
+    </script>
+</body>
+</html>

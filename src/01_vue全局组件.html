@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue练习</title>
+</head>
+<body>
+    <div id="App"><my-date></my-date></div>
+    <script src="../js/vue.js"></script>
+    <script>
+
+
+
+        /**
+        *  注册全局组件 
+        */
+        /* 1.创建一个组件构造器 */
+        let constructor = Vue.extend({
+            template:'<div><input type="date"><p>今天已经是冬天了</p></div>'
+        });
+        /* 2.注册组件 */
+        Vue.component('my-date',constructor);
+
+       /* 创建vue实例 */
+       let vm = new Vue({
+            el:'#App',
+            data:{
+
+            },
+            methods:{
+
+            },
+            computed:{
+
+            }
+        })
+    </script>
+</body>
+</html>
